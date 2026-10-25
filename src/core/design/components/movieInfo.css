@@ -1,0 +1,22 @@
+.movie-info {
+    width: 464px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie-logo {
+    width: 300px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+}
+
+.movie-overview {
+    width: 440px;
+}
+
+.movie-tech {
+    height: 16px;
+    white-space: nowrap;
+}

@@ -1,0 +1,140 @@
+/*
+ * While resting, the halo's moving line replaces the static border. The comet keeps it underneath:
+ * the comet is gone part of the time, and the focus must always stay visible.
+ */
+.neon.focused:has(> .neon-effect.halo.resting)::after {
+    opacity: 0;
+    transition: opacity 400ms linear;
+}
+
+.neon-effect {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.halo-glow {
+    position: absolute;
+    inset: -12px;
+    padding: 12px;
+    overflow: hidden;
+    /*
+     * The soft glow minus the element's own rounded shape, placed on the content box (the element's
+     * area): xor on Chrome 108, exclude on 120. A rectangular cut left dark corners on round buttons.
+     */
+    -webkit-mask-image: var(--halo-cut), var(--halo-mask);
+    -webkit-mask-origin: content-box, border-box;
+    -webkit-mask-clip: content-box, border-box;
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    animation: neon-fade-to-full 400ms linear forwards;
+}
+
+.halo-line {
+    position: absolute;
+    inset: -0.75px;
+    border-radius: inherit;
+    overflow: hidden;
+    padding: 1.5px;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    animation: neon-fade-to-line 400ms linear forwards;
+}
+
+/* A square larger than the element's diagonal, so it covers it at every angle. */
+.lamp {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 600px;
+    height: 600px;
+    margin: -300px 0 0 -300px;
+    will-change: transform;
+}
+
+.lamp-a {
+    background: conic-gradient(
+        from 90deg,
+        transparent 0turn,
+        var(--neon-blue) 0.18turn,
+        transparent 0.36turn,
+        transparent 0.54turn,
+        var(--neon-pink) 0.72turn,
+        transparent 0.9turn
+    );
+    animation: neon-turn 7s linear infinite;
+}
+
+.lamp-b {
+    background: conic-gradient(
+        from 90deg,
+        transparent 0turn,
+        var(--neon-purple) 0.18turn,
+        transparent 0.36turn,
+        transparent 0.54turn,
+        rgba(242, 246, 255, 0.8) 0.72turn,
+        transparent 0.9turn
+    );
+    mix-blend-mode: screen;
+    animation: neon-turn 11s linear infinite reverse;
+}
+
+.comet-ring {
+    position: absolute;
+    inset: -1.1px;
+    border-radius: inherit;
+    overflow: hidden;
+    padding: 2.2px;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: comet-visibility 7.5s linear infinite;
+}
+
+/* The trail: 45% of a turn, cooling from the pink head via purple and white to blue. */
+.comet-trail {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 600px;
+    height: 600px;
+    margin: -300px 0 0 -300px;
+    background: conic-gradient(
+        from 90deg,
+        transparent 0turn,
+        rgba(127, 200, 255, 0) 0.55turn,
+        rgba(127, 200, 255, 0.5) 0.7turn,
+        rgba(242, 246, 255, 0.85) 0.84turn,
+        var(--neon-purple) 0.95turn,
+        var(--neon-pink) 1turn
+    );
+    will-change: transform;
+    animation: neon-turn 5.5s linear infinite;
+}
+
+@keyframes neon-turn {
+    to { transform: rotate(1turn); }
+}
+
+@keyframes neon-fade-to-full {
+    to { opacity: 0.5; }
+}
+
+@keyframes neon-fade-to-line {
+    to { opacity: 0.8; }
+}
+
+/* Visible about 3.5 s, then gone about 3 s, with 0.35 s fades; a fixed rhythm instead of a random one. */
+@keyframes comet-visibility {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    48% { opacity: 1; }
+    53% { opacity: 0; }
+    100% { opacity: 0; }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "jellycast-webos",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "package": "npm run build && ares-package dist service --outdir build --no-minify",
+    "tv:install": "ares-install --device ${TV:-c2} build/nl.jellycast.webos_${npm_package_version}_all.ipk",
+    "tv:launch": "ares-launch --device ${TV:-c2} nl.jellycast.webos",
+    "tv:inspect": "ares-inspect --device ${TV:-c2} --app nl.jellycast.webos --open",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@fontsource/roboto": "^5.3.0",
+    "@webos-tools/cli": "^3.2.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "preact": "^11.0.1"
+  }
+}

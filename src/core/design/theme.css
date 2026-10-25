@@ -1,0 +1,154 @@
+/* Sizes are in dp, as in the Android app; #app is zoomed 2× to the TV's 1920×1080. */
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 300;
+    src: url('/fonts/roboto-300.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    src: url('/fonts/roboto-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 500;
+    src: url('/fonts/roboto-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 700;
+    src: url('/fonts/roboto-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 900;
+    src: url('/fonts/roboto-700.woff2') format('woff2');
+}
+
+:root {
+    --background: #0e0e0f;
+    --surface: #1a1a1c;
+    --rail: #2a2a2e;
+    --text: #ece9e4;
+    --text-muted: #a3a09a;
+    --neon-blue: #7fc8ff;
+    --neon-white: #f2f6ff;
+    --neon-purple: #9b6bff;
+    --neon-pink: #ff6ec7;
+    --progress-start: #8fb8d8;
+    --progress-mid: #9a88d0;
+    --progress-end: #c584b0;
+    --accent: #b9a6f2;
+    --primary-container: #16161b;
+    --online: #7fb77e;
+    --accent-dimmed: #2e2840;
+    --error: #f2b8b5;
+    --lavender: #d9ccff;
+
+    --safe-x: 48px;
+    --safe-y: 27px;
+    --item-gap: 16px;
+    --card-gap: 20px;
+    --row-gap: 28px;
+    --section-bar-height: 76px;
+    --focus-scale: 1.05;
+    --progress-gradient: linear-gradient(90deg, var(--progress-start) 0%, var(--progress-mid) 70%, var(--progress-end) 100%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#app {
+    position: relative;
+    width: 960px;
+    height: 540px;
+    overflow: hidden;
+    zoom: 2;
+}
+
+.screen {
+    position: absolute;
+    inset: 0;
+}
+
+.screen[hidden] {
+    display: none;
+}
+
+img {
+    display: block;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    border: 0;
+    padding: 0;
+    background: none;
+}
+
+/* Typography: the tv-material scale as the Android app sets it. */
+.display-small { font-size: 36px; line-height: 42px; font-weight: 700; }
+.headline-medium { font-size: 28px; line-height: 34px; font-weight: 300; letter-spacing: -0.01em; }
+.headline-small { font-size: 24px; line-height: 30px; font-weight: 700; }
+.title-large { font-size: 17px; line-height: 22px; font-weight: 300; }
+.title-medium { font-size: 16px; line-height: 20px; font-weight: 500; }
+.title-small { font-size: 14px; line-height: 18px; font-weight: 500; }
+.body-large { font-size: 16px; line-height: 22px; font-weight: 400; }
+.body-medium { font-size: 14px; line-height: 21px; font-weight: 400; }
+.body-small { font-size: 12px; line-height: 16px; font-weight: 400; }
+.label-large { font-size: 14px; line-height: 18px; font-weight: 500; }
+.label-medium { font-size: 12px; line-height: 16px; font-weight: 500; }
+.label-small { font-size: 10px; line-height: 12px; font-weight: 700; letter-spacing: 0.06em; }
+
+.muted { color: var(--text-muted); }
+.accent { color: var(--accent); }
+.bold { font-weight: 700; }
+.light { font-weight: 300; }
+.upper { text-transform: uppercase; }
+.heading { letter-spacing: 0.12em; text-transform: uppercase; }
+.tech { letter-spacing: 0.06em; text-transform: uppercase; }
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.clamp-2,
+.clamp-3,
+.clamp-8 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.clamp-2 { -webkit-line-clamp: 2; }
+.clamp-3 { -webkit-line-clamp: 3; }
+.clamp-8 { -webkit-line-clamp: 8; }
+
+.key-repeat .neon,
+.key-repeat .rows,
+.key-repeat .shelf-track,
+.key-repeat .library-grid,
+.key-repeat .bookcase-row {
+    transition: none;
+}

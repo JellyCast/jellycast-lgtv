@@ -1,0 +1,61 @@
+.series-section {
+    position: absolute;
+    inset: 0;
+}
+
+.series-hero {
+    position: absolute;
+    left: var(--safe-x);
+    top: 82px;
+    width: 424px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.series-hero-logo {
+    width: 260px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+}
+
+.series-hero-meta {
+    height: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.series-hero-overview {
+    height: 63px;
+}
+
+.series-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 248px;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.series-skeleton {
+    position: absolute;
+    left: var(--safe-x);
+    top: 82px;
+}
+
+.series-skeleton-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.series-error {
+    position: absolute;
+    left: var(--safe-x);
+    top: 120px;
+}

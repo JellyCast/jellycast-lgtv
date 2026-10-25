@@ -1,0 +1,5 @@
+{
+    "name": "nl.jellycast.webos.service",
+    "description": "JellyCast server discovery",
+    "main": "service.js"
+}

@@ -1,0 +1,46 @@
+/*
+ * Neon focus: the selected ring (white with a hint of blue and purple) under the neon gradient at 85%.
+ * Strokes are 2 dp centred on the outline, so the ring sits 1 dp outside the element.
+ * The Android sweep starts at 3 o'clock: conic-gradient(from 90deg).
+ */
+.neon {
+    position: relative;
+    transition: transform 120ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neon::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    pointer-events: none;
+    opacity: 0;
+    background:
+        conic-gradient(
+            from 90deg,
+            rgba(127, 200, 255, 0.85),
+            rgba(242, 246, 255, 0.85),
+            rgba(155, 107, 255, 0.85),
+            rgba(255, 110, 199, 0.85),
+            rgba(127, 200, 255, 0.85)
+        ),
+        conic-gradient(
+            from 90deg,
+            rgba(242, 246, 255, 0.6),
+            rgba(127, 200, 255, 0.5),
+            rgba(242, 246, 255, 0.6),
+            rgba(200, 170, 255, 0.5),
+            rgba(242, 246, 255, 0.6)
+        );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.neon.focused::after {
+    opacity: 1;
+}
+
+.neon.focused.scale-105 { transform: scale(1.05); }
+.neon.focused.scale-110 { transform: scale(1.1); }

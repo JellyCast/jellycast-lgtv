@@ -1,0 +1,55 @@
+.card {
+    position: relative;
+    flex: none;
+    border-radius: 8px;
+    background: var(--surface);
+}
+
+.card > img,
+.card > .artwork {
+    border-radius: 8px;
+}
+
+.poster { width: 120px; height: 180px; }
+.landscape { width: 196px; height: 110px; }
+
+.card-title {
+    position: absolute;
+    inset: 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.landscape-item {
+    width: 196px;
+    flex: none;
+}
+
+.landscape-label {
+    margin-top: 12px;
+    color: var(--text);
+}
+
+.progress {
+    position: relative;
+    height: 3px;
+    border-radius: 1.5px;
+    background: rgba(14, 14, 15, 0.7);
+}
+
+.progress-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5px;
+    background: var(--progress-gradient);
+}
+
+.card-progress {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 8px;
+}

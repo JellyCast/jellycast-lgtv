@@ -1,0 +1,60 @@
+.library {
+    position: absolute;
+    inset: 0;
+}
+
+.library-controls {
+    position: absolute;
+    top: 90px;
+    left: var(--safe-x);
+    right: var(--safe-x);
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.library-search {
+    margin-left: 16px;
+}
+
+.library-search .text-field-wrapper {
+    width: 240px;
+}
+
+.library-spacer {
+    flex: 1;
+}
+
+.library-grid-viewport {
+    position: absolute;
+    top: 136px;
+    left: var(--safe-x);
+    right: var(--safe-x);
+    bottom: 0;
+    overflow: hidden;
+    padding-top: 6px;
+}
+
+.library-grid {
+    /* Its own layer: a line change shifts it instead of repainting all visible posters (p95 88 → ~50 ms). */
+    will-change: transform;
+    display: grid;
+    grid-template-columns: repeat(8, 92px);
+    column-gap: 18px;
+    row-gap: 16px;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.library-tile {
+    width: 92px;
+}
+
+.library-poster {
+    width: 92px;
+    height: 138px;
+}
+
+.library-title {
+    margin-top: 6px;
+}

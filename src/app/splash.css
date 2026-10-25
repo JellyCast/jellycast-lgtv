@@ -1,0 +1,25 @@
+.splash {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    background: var(--background);
+    transition: opacity 200ms linear;
+}
+
+.splash.leaving {
+    opacity: 0;
+}
+
+.splash-wordmark {
+    opacity: 0;
+    animation: splash-wordmark 250ms linear 500ms forwards;
+}
+
+@keyframes splash-wordmark {
+    to { opacity: 1; }
+}

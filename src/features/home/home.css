@@ -1,0 +1,69 @@
+.home,
+.home-content,
+.home-section {
+    position: absolute;
+    inset: 0;
+}
+
+.home-column {
+    position: absolute;
+    left: var(--safe-x);
+    top: 116px;
+    width: 464px;
+}
+
+.suggestion-details {
+    width: 464px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reason {
+    height: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.reason-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--accent);
+}
+
+.suggestion-logo {
+    width: 280px;
+    height: 95px;
+    display: flex;
+    align-items: center;
+}
+
+
+.suggestion-overview {
+    width: 400px;
+    height: 63px;
+}
+
+.home-play {
+    margin-top: 18px;
+}
+
+.home-tech {
+    margin-top: 22px;
+    height: 16px;
+}
+
+.home-skeleton {
+    padding-top: 28px;
+    height: 230px;
+}
+
+.home-empty {
+    max-width: 440px;
+}

@@ -1,0 +1,35 @@
+.options-panel {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 320px;
+    padding: 32px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(14, 14, 15, 0.94);
+    z-index: 30;
+}
+
+.options-title {
+    padding: 0 0 12px 14px;
+}
+
+.option-row {
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.option-row .title-medium {
+    font-weight: 300;
+}
+
+.options-divider {
+    height: 1px;
+    margin: 8px 14px;
+    background: var(--rail);
+}

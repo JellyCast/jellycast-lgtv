@@ -1,0 +1,37 @@
+.error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 440px;
+}
+
+.stack-neighbours {
+    position: absolute;
+    left: var(--safe-x);
+    bottom: var(--safe-y);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.neighbour {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 160px;
+    min-width: 0;
+}
+
+.neighbours-position {
+    color: rgba(163, 160, 154, 0.7);
+}
+
+.meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-top: 6px;
+    min-width: 0;
+    white-space: nowrap;
+}

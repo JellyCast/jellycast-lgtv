@@ -1,0 +1,14 @@
+.settings-footer {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.settings-group-gap {
+    padding-top: 10px;
+}
+
+.settings-account {
+    width: 360px;
+}

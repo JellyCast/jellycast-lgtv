@@ -1,0 +1,40 @@
+.movie-browse {
+    position: absolute;
+    inset: 0;
+}
+
+.movie-browse-column {
+    position: absolute;
+    left: var(--safe-x);
+    top: 128px;
+}
+
+.movie-actions {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.movie-browse-column .movie-tech {
+    margin-top: 22px;
+}
+
+.shelf-indicator {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-left: 18px;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+.shelf-indicator-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--rail);
+}
+
+.shelf-other {
+    font-weight: 400;
+}

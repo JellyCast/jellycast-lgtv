@@ -1,0 +1,91 @@
+.series-page {
+    position: absolute;
+    inset: 0;
+}
+
+.series-top {
+    position: absolute;
+    left: var(--safe-x);
+    top: 44px;
+    width: 464px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.series-page-overview {
+    width: 440px;
+    height: 63px;
+}
+
+.series-top-buttons {
+    margin-top: 8px;
+    display: flex;
+    gap: 16px;
+    white-space: nowrap;
+}
+
+.continue-slot {
+    width: 300px;
+    flex: none;
+}
+
+.continue-slot .pill {
+    width: 300px;
+}
+
+.series-seasons {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 274px;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.series-page-error {
+    padding: 36px 48px 0;
+}
+
+.card.watched img {
+    filter: brightness(0.45);
+}
+
+.watched-check {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: rgba(236, 233, 228, 0.92);
+    color: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mark-season {
+    background: var(--rail);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.seasons-skeleton {
+    padding-left: 48px;
+}
+
+.seasons-skeleton-row {
+    margin-bottom: 28px;
+}
+
+.seasons-skeleton-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+}

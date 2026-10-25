@@ -1,0 +1,9 @@
+{
+    "id": "nl.jellycast.webos.service",
+    "description": "JellyCast server discovery",
+    "services": [
+        {
+            "name": "nl.jellycast.webos.service"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+.skeleton {
+    flex: none;
+    background: var(--surface);
+    opacity: 0.5;
+    animation: skeleton-wave 2000ms ease-in-out infinite;
+}
+
+@keyframes skeleton-wave {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.85; }
+}

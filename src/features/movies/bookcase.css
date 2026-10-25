@@ -1,0 +1,237 @@
+.bookcase {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 82px;
+    height: 431px;
+    overflow: hidden;
+}
+
+.bookcase-error {
+    position: absolute;
+    left: var(--safe-x);
+    top: 126px;
+}
+
+.bookcase-row {
+    display: flex;
+    gap: 4px;
+    padding-left: 48px;
+    height: 431px;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spine {
+    position: relative;
+    flex: none;
+    width: 44px;
+    height: 431px;
+    color: var(--text);
+    box-shadow: inset 1px 0 rgba(0, 0, 0, 0.35), inset -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.spine.light,
+.movie-panel.light {
+    color: var(--background);
+}
+
+.spine-poster {
+    width: 44px;
+    height: 78px;
+    border-bottom: 1px solid rgba(236, 233, 228, 0.18);
+    overflow: hidden;
+}
+
+.spine.light .spine-poster {
+    border-bottom-color: rgba(14, 14, 15, 0.18);
+}
+
+.spine-logo {
+    position: absolute;
+    top: 92px;
+    left: 7px;
+    width: 30px;
+    height: 212px;
+}
+
+/* The logo box laid out horizontally (212×30), then turned to read from bottom to top. */
+.spine-logo-rotated {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 212px;
+    height: 30px;
+    margin: -15px 0 0 -106px;
+    transform: rotate(-90deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.spine-logo-rotated img {
+    object-position: center !important;
+}
+
+.spine-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.spine-resolution {
+    font-weight: 900;
+}
+
+.spine-muted {
+    opacity: 0.7;
+}
+
+.spine-line {
+    width: 20px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.18;
+}
+
+.spine-rating {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    border: 1.5px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0;
+}
+
+.spine-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(0deg, var(--progress-start), var(--progress-mid) 70%, var(--progress-end));
+}
+
+.movie-panel {
+    position: relative;
+    flex: none;
+    width: 500px;
+    height: 431px;
+    overflow: hidden;
+    color: var(--text);
+}
+
+.movie-panel > .artwork {
+    position: absolute;
+    inset: 0;
+}
+
+.movie-panel-scrim {
+    position: absolute;
+    inset: 0;
+}
+
+.movie-panel-content {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie-panel-title {
+    width: 280px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+
+.movie-panel-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie-panel-meta-line {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.movie-panel-progress {
+    position: relative;
+    width: 260px;
+    height: 3px;
+    background: rgba(236, 233, 228, 0.2);
+}
+
+.movie-panel-buttons {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.panel-pill {
+    width: 260px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(14, 14, 15, 0.55);
+    color: var(--text);
+    transform-origin: left center;
+}
+
+.panel-pill.selected {
+    transform: scale(1.1);
+}
+
+.next-shelf-hint {
+    flex: none;
+    width: 220px;
+    margin-left: 40px;
+    align-self: flex-end;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.next-shelf-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bookcase-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.bookcase-edge.left {
+    left: 0;
+    background: linear-gradient(90deg, var(--background), rgba(14, 14, 15, 0.85) 45%, rgba(14, 14, 15, 0));
+}
+
+.bookcase-edge.right {
+    right: 0;
+    justify-content: flex-end;
+    background: linear-gradient(270deg, var(--background), rgba(14, 14, 15, 0.85) 45%, rgba(14, 14, 15, 0));
+}

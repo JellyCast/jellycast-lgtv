@@ -1,0 +1,47 @@
+.corner-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 720px;
+    height: 405px;
+}
+
+.corner-scrim {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    background:
+        linear-gradient(180deg, rgba(14, 14, 15, 0) 60%, var(--background) 100%),
+        radial-gradient(
+            circle 792px at 100% 0%,
+            rgba(14, 14, 15, 0.25) 0%,
+            rgba(14, 14, 15, 0.55) 45%,
+            rgba(14, 14, 15, 0.92) 75%,
+            var(--background) 92%
+        );
+}
+
+.full-backdrop {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+}
+
+/* Own layers: a new base colour or image must not repaint the scrim over the whole screen. */
+.full-backdrop > .artwork,
+.corner-backdrop > .artwork {
+    will-change: opacity;
+}
+
+.full-scrim {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    background: linear-gradient(
+        90deg,
+        var(--background) 0%,
+        rgba(14, 14, 15, 0.94) 42%,
+        rgba(14, 14, 15, 0.6) 64%,
+        rgba(14, 14, 15, 0.2) 100%
+    );
+}
