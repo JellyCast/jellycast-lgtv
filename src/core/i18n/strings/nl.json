@@ -194,6 +194,45 @@
   "playback_start_delay": "Startvertraging: %1$s s",
   "playback_start_delay_explain": "Hoor je bij het starten een klik, of valt het geluid even weg (vaak met een versterker ertussen)? Zet dan een vertraging: het geluid begint later, als tv en versterker klaar zijn.",
   "settings_device_none": "geen",
+  "player_skip_intro": "Intro overslaan",
+  "player_skip_recap": "Terugblik overslaan",
+  "player_skip_commercial": "Reclame overslaan",
+  "player_skip_preview": "Voorproefje overslaan",
+  "player_skip_outro": "Aftiteling overslaan",
+  "library_count_movies": {
+    "one": "%d film",
+    "other": "%d films"
+  },
+  "library_count_series": {
+    "one": "%d serie",
+    "other": "%d series"
+  },
+  "season_count": {
+    "one": "%1$d seizoen",
+    "other": "%1$d seizoenen"
+  },
+  "series_episode_count": {
+    "one": "%1$d aflevering",
+    "other": "%1$d afleveringen"
+  },
+  "usage_title": "Statistiek",
+  "usage_intro": "We tellen hoeveel toestellen JellyCast gebruiken, per land, om de app gratis te houden. Zonder je naam of wat je kijkt.",
+  "usage_more": "Meer informatie",
+  "usage_continue": "Verder",
+  "usage_continue_without": "Verder zonder statistiek",
+  "usage_detail_ping": "Als je de app opent, stuurt hij een willekeurig nummer dat alleen voor deze app is gemaakt, je land en het uur. Niet je naam, je server of wat je kijkt.",
+  "usage_detail_device": "Voor ondersteuning stuurt hij ook het soort toestel, de systeemversie en de app-versie mee, zoals “%1$s”. Niet de naam van je toestel.",
+  "usage_detail_country": "Het land komt uit je internetadres, en dat adres wordt nooit bewaard.",
+  "usage_detail_retention": "De gegevens worden na 13 maanden verwijderd.",
+  "usage_detail_settings": "Je kunt dit altijd wijzigen in Instellingen.",
+  "settings_usage_footer": "Telt dit toestel per land, zodat JellyCast adverteerders kan vinden en gratis blijft.",
+  "ad_label": "Advertentie",
+  "ad_meta": "Advertentie · %1$s",
+  "ad_why_title": "Waarom zie ik dit?",
+  "ad_why": "JellyCast kiest advertenties alleen op land, nooit op wat je kijkt. Je ziet deze omdat je in %1$s bent.",
+  "ad_why_no_country": "JellyCast kiest advertenties alleen op land, nooit op wat je kijkt.",
+  "settings_usage_on": "Gebruiksstatistiek: aan",
+  "settings_usage_off": "Gebruiksstatistiek: uit",
   "genre_action": "Actie",
   "genre_action_adventure": "Actie & avontuur",
   "genre_adventure": "Avontuur",
@@ -220,26 +259,5 @@
   "genre_tv_movie": "Tv-film",
   "genre_war": "Oorlog",
   "genre_war_politics": "Oorlog & politiek",
-  "genre_western": "Western",
-  "player_skip_intro": "Intro overslaan",
-  "player_skip_recap": "Terugblik overslaan",
-  "player_skip_commercial": "Reclame overslaan",
-  "player_skip_preview": "Voorproefje overslaan",
-  "player_skip_outro": "Aftiteling overslaan",
-  "library_count_movies": {
-    "one": "%d film",
-    "other": "%d films"
-  },
-  "library_count_series": {
-    "one": "%d serie",
-    "other": "%d series"
-  },
-  "season_count": {
-    "one": "%1$d seizoen",
-    "other": "%1$d seizoenen"
-  },
-  "series_episode_count": {
-    "one": "%1$d aflevering",
-    "other": "%1$d afleveringen"
-  }
+  "genre_western": "Western"
 }

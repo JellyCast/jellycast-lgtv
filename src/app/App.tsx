@@ -9,8 +9,10 @@ import { installKeyLayers } from '../core/focus/keyLayers'
 import { setLanguage } from '../core/i18n/i18n'
 import { NavigatorHost } from '../core/navigation/Navigator'
 import type { Route } from '../core/navigation/routes'
+import { appOpened, chooseUsage, useUsageChoice } from '../core/service/usage'
 import { LoginScreen } from '../features/auth/LoginScreen'
 import { ServerScreen } from '../features/auth/ServerScreen'
+import { UsageConsentScreen } from '../features/consent/UsageConsentScreen'
 import { AppContext, AuthContext, type AppState } from './AppContext'
 import { RemotePlayListener } from './RemotePlayListener'
 import { renderSignedInRoute } from './routes'
@@ -31,6 +33,17 @@ export function App() {
     const [generation, setGeneration] = useState(0)
     const [showContent, setShowContent] = useState(false)
     const [splash, setSplash] = useState(true)
+    const usageChoice = useUsageChoice()
+
+    // At launch and every time the TV brings the app back to the front.
+    useEffect(() => {
+        void appOpened()
+        const onVisibility = () => {
+            if (!document.hidden) void appOpened()
+        }
+        document.addEventListener('visibilitychange', onVisibility)
+        return () => document.removeEventListener('visibilitychange', onVisibility)
+    }, [])
 
     const onSignedIn = useCallback((next: Session) => {
         saveSession(next)
@@ -82,7 +95,10 @@ export function App() {
 
     return (
         <AuthContext.Provider value={{ onSignedIn }}>
+            {/* Asked before the app itself, so nothing it opens can cover the question. */}
+            {showContent && usageChoice === null && <UsageConsentScreen onChoose={chooseUsage} />}
             {showContent &&
+                usageChoice !== null &&
                 (appState ? (
                     <AppContext.Provider value={appState}>
                         <NavigatorHost key={`in-${generation}`} initial={{ name: 'home' }} render={renderSignedInRoute} onExitRequest={exit}>

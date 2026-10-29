@@ -194,6 +194,49 @@
   "playback_start_delay": "Retraso inicial: %1$s s",
   "playback_start_delay_explain": "¿Oyes un clic al empezar o el sonido se corta un momento (a menudo con un amplificador de por medio)? Añade un retraso: el sonido empieza más tarde, cuando el televisor y el amplificador están listos.",
   "settings_device_none": "ninguno",
+  "player_skip_intro": "Saltar intro",
+  "player_skip_recap": "Saltar resumen",
+  "player_skip_commercial": "Saltar anuncio",
+  "player_skip_preview": "Saltar avance",
+  "player_skip_outro": "Saltar créditos",
+  "library_count_movies": {
+    "one": "%d película",
+    "many": "%d de películas",
+    "other": "%d películas"
+  },
+  "library_count_series": {
+    "one": "%d serie",
+    "many": "%d de series",
+    "other": "%d series"
+  },
+  "season_count": {
+    "one": "%1$d temporada",
+    "many": "%1$d de temporadas",
+    "other": "%1$d temporadas"
+  },
+  "series_episode_count": {
+    "one": "%1$d episodio",
+    "many": "%1$d de episodios",
+    "other": "%1$d episodios"
+  },
+  "usage_title": "Estadísticas",
+  "usage_intro": "Contamos cuántos dispositivos usan JellyCast, por país, para que siga siendo gratis. Sin tu nombre ni lo que ves.",
+  "usage_more": "Más información",
+  "usage_continue": "Continuar",
+  "usage_continue_without": "Continuar sin estadísticas",
+  "usage_detail_ping": "Al abrir la app, envía un número aleatorio creado para esta app, tu país y la hora. No tu nombre, tu servidor ni lo que ves.",
+  "usage_detail_device": "Para el soporte también envía el tipo de dispositivo, su versión del sistema y la versión de la app, como «%1$s». No el nombre de tu dispositivo.",
+  "usage_detail_country": "El país se obtiene de tu dirección de internet, que nunca se guarda.",
+  "usage_detail_retention": "Los datos se eliminan después de 13 meses.",
+  "usage_detail_settings": "Puedes cambiarlo cuando quieras en Ajustes.",
+  "settings_usage_footer": "Cuenta este dispositivo por país, para que JellyCast encuentre anunciantes y siga siendo gratis.",
+  "ad_label": "Anuncio",
+  "ad_meta": "Anuncio · %1$s",
+  "ad_why_title": "¿Por qué veo esto?",
+  "ad_why": "JellyCast elige los anuncios solo por país, nunca por lo que ves. Ves este porque estás en %1$s.",
+  "ad_why_no_country": "JellyCast elige los anuncios solo por país, nunca por lo que ves.",
+  "settings_usage_on": "Estadísticas de uso: sí",
+  "settings_usage_off": "Estadísticas de uso: no",
   "genre_action": "Acción",
   "genre_action_adventure": "Acción y aventura",
   "genre_adventure": "Aventura",
@@ -220,30 +263,5 @@
   "genre_tv_movie": "Película de TV",
   "genre_war": "Bélica",
   "genre_war_politics": "Bélica y política",
-  "genre_western": "Western",
-  "player_skip_intro": "Saltar intro",
-  "player_skip_recap": "Saltar resumen",
-  "player_skip_commercial": "Saltar anuncio",
-  "player_skip_preview": "Saltar avance",
-  "player_skip_outro": "Saltar créditos",
-  "library_count_movies": {
-    "one": "%d película",
-    "many": "%d de películas",
-    "other": "%d películas"
-  },
-  "library_count_series": {
-    "one": "%d serie",
-    "many": "%d de series",
-    "other": "%d series"
-  },
-  "season_count": {
-    "one": "%1$d temporada",
-    "many": "%1$d de temporadas",
-    "other": "%1$d temporadas"
-  },
-  "series_episode_count": {
-    "one": "%1$d episodio",
-    "many": "%1$d de episodios",
-    "other": "%1$d episodios"
-  }
+  "genre_western": "Western"
 }

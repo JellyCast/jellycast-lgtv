@@ -12,7 +12,9 @@ import { useKeyLayer, useRested } from '../../core/focus/hooks'
 import { t } from '../../core/i18n/i18n'
 import type { Series } from '../../core/model/library'
 import { useNavigator } from '../../core/navigation/Navigator'
-import { SuggestionDetails, SuggestionTechLine } from './SuggestionDetails'
+import { cachedPlacements } from '../../core/service/usage'
+import { isAd, withAd, type AdEntry } from './homeAd'
+import { AdDetails, SuggestionDetails, SuggestionTechLine } from './SuggestionDetails'
 import type { SectionProps } from './sectionProps'
 import './home.css'
 
@@ -28,7 +30,9 @@ export const HomeSection = memo(function HomeSection({ focused, visible, resetKe
     const [index, setIndex] = useState(0)
     const playing = useRef(false)
 
-    const { state, retry } = useLoad<Suggestion[]>(
+    const [showsAdReason, setShowsAdReason] = useState(false)
+
+    const { state, retry } = useLoad<HomeEntry[]>(
         'home',
         async () => {
             const [nextUp, resume, latest, random] = await Promise.all([
@@ -38,7 +42,7 @@ export const HomeSection = memo(function HomeSection({ focused, visible, resetKe
                 library.getRandomUnwatchedMovie().catch(() => null),
             ])
             const candidates = rankHome(nextUp, resume, latest, random, Date.now())
-            return Promise.all(
+            const suggestions = await Promise.all(
                 candidates.map(async (candidate) => {
                     if (candidate.item.kind !== 'episode') return { ...candidate, series: null }
                     const seriesId = candidate.item.seriesId
@@ -47,6 +51,7 @@ export const HomeSection = memo(function HomeSection({ focused, visible, resetKe
                     return { ...candidate, series }
                 }),
             )
+            return withAd<Suggestion>(suggestions, cachedPlacements())
         },
         visible,
     )
@@ -54,22 +59,28 @@ export const HomeSection = memo(function HomeSection({ focused, visible, resetKe
     const current = stack[Math.min(index, stack.length - 1)] ?? null
 
     useEffect(() => setIndex(0), [resetKey])
+    useEffect(() => setShowsAdReason(false), [current])
     useEffect(() => {
         if (visible) {
             playing.current = false
             return
         }
         if (!playing.current) setIndex(0)
-        advanceBackdrops(stack.map(ownerOf))
+        advanceBackdrops(stack.filter((entry): entry is Suggestion => !isAd(entry)).map(ownerOf))
     }, [visible])
 
     const rested = useRested(current, restMs)
     useEffect(() => {
-        if (rested && visible) library.warmUp(rested.item.id)
+        if (rested && visible && !isAd(rested)) library.warmUp(rested.item.id)
     }, [rested, visible])
 
     const play = () => {
         if (!current) return
+        // An ad's button shows why it is there instead; a TV opens no links.
+        if (isAd(current)) {
+            setShowsAdReason((shown) => !shown)
+            return
+        }
         playing.current = true
         navigator.push({ name: 'player', itemId: current.item.id })
     }
@@ -91,8 +102,12 @@ export const HomeSection = memo(function HomeSection({ focused, visible, resetKe
 
     const showSkeleton = useDelayedVisible(state.kind === 'loading')
     const backdropItem = rested ?? current
-    const backdrop = backdropItem ? pickBackdrop(ownerOf(backdropItem), backdropItem.item.artwork.backdrops, backdropItem.item.artwork.backdrop) : null
-    const resume = current ? current.item.resumePositionMs > 0 : false
+    const backdrop = !backdropItem
+        ? null
+        : isAd(backdropItem)
+          ? backdropItem.campaign.imageUrl
+          : pickBackdrop(ownerOf(backdropItem), backdropItem.item.artwork.backdrops, backdropItem.item.artwork.backdrop)
+    const resume = current && !isAd(current) ? current.item.resumePositionMs > 0 : false
 
     return (
         <div class="home-section">
@@ -100,6 +115,14 @@ export const HomeSection = memo(function HomeSection({ focused, visible, resetKe
             <div class="home-column">
                 {state.kind === 'error' ? (
                     <ErrorState message={t('library_error')} focused={focused} onRetry={retry} />
+                ) : current && isAd(current) ? (
+                    <>
+                        <AdDetails entry={current} showsReason={showsAdReason} />
+                        <div class="home-play">
+                            <PillButton label={t('ad_why_title')} primary focused={focused} onClick={play} />
+                        </div>
+                        <div class="home-tech" />
+                    </>
                 ) : current ? (
                     <>
                         <SuggestionDetails suggestion={current} />
@@ -131,12 +154,15 @@ export const HomeSection = memo(function HomeSection({ focused, visible, resetKe
     )
 })
 
+type HomeEntry = Suggestion | AdEntry
+
 function ownerOf(suggestion: Suggestion): string {
     return suggestion.item.kind === 'episode' ? suggestion.item.seriesId : suggestion.item.id
 }
 
-function titleOf(suggestion: Suggestion): string {
-    return suggestion.series?.title ?? suggestion.item.title
+function titleOf(entry: HomeEntry): string {
+    if (isAd(entry)) return entry.campaign.title ?? entry.campaign.advertiser
+    return entry.series?.title ?? entry.item.title
 }
 
 function HomeSkeleton() {

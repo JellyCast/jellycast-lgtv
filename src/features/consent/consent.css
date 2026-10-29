@@ -1,0 +1,6 @@
+.consent-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 360px;
+}

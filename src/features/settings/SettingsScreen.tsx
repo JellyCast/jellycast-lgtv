@@ -8,15 +8,17 @@ import { useKeyLayer } from '../../core/focus/hooks'
 import { useFocusList } from '../../core/focus/useFocusList'
 import { languages, setLanguage, t } from '../../core/i18n/i18n'
 import { useNavigator } from '../../core/navigation/Navigator'
+import { chooseUsage, useUsageChoice } from '../../core/service/usage'
 import './settings.css'
 
-type Button = 'language' | 'movieView' | 'quality' | 'burnInAss' | 'changeServer' | 'signOut'
-const buttons: Button[] = ['language', 'movieView', 'quality', 'burnInAss', 'changeServer', 'signOut']
+type Button = 'language' | 'movieView' | 'quality' | 'burnInAss' | 'usage' | 'changeServer' | 'signOut'
+const buttons: Button[] = ['language', 'movieView', 'quality', 'burnInAss', 'usage', 'changeServer', 'signOut']
 const explanations: Partial<Record<Button, string>> = {
     language: 'settings_language_explain',
     movieView: 'settings_movie_view_explain',
     quality: 'settings_max_bitrate_explain',
     burnInAss: 'settings_burn_in_ass_explain',
+    usage: 'settings_usage_footer',
 }
 const buildNumber = 1
 
@@ -28,6 +30,7 @@ export function SettingsScreen() {
     const navigator = useNavigator()
     const { session, signOut } = useApp()
     const settings = useSettings()
+    const usage = useUsageChoice()
     const list = useFocusList<Button>(buttons, 'language')
     const [signingOut, setSigningOut] = useState(false)
 
@@ -49,6 +52,9 @@ export function SettingsScreen() {
                 break
             case 'burnInAss':
                 updateSettings({ burnInAss: !settings.burnInAss })
+                break
+            case 'usage':
+                chooseUsage(usage === 'allowed' ? 'declined' : 'allowed')
                 break
             case 'changeServer':
                 void signOut(true)
@@ -75,6 +81,7 @@ export function SettingsScreen() {
         movieView: t(settings.movieView === 'detail' ? 'settings_movie_view_detail' : 'settings_movie_view_bookcase'),
         quality: settings.maxBitrate >= noBitrateLimit ? t('settings_max_bitrate_none') : t('settings_max_bitrate', settings.maxBitrate / 1_000_000),
         burnInAss: t(settings.burnInAss ? 'settings_burn_in_ass_on' : 'settings_burn_in_ass_off'),
+        usage: t(usage === 'allowed' ? 'settings_usage_on' : 'settings_usage_off'),
         changeServer: t('settings_change_server'),
         signOut: signingOut ? t('settings_logging_out') : t('settings_logout'),
     }
@@ -105,6 +112,7 @@ export function SettingsScreen() {
                 <AuthHeading text={t('settings_group_account')} />
             </div>
             <div class="body-medium muted ellipsis settings-account">{t('settings_account', session.userName, session.serverName)}</div>
+            {button('usage')}
             {button('changeServer')}
             {button('signOut')}
         </AuthLayout>

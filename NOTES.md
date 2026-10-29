@@ -84,6 +84,15 @@ Open: Series ↑/↓ and the Library stay a few points above 5%. Android measure
 
 ## Decisions
 
+### Usage statistics and ads from the JellyCast service (2026-10-29)
+
+- The same as iOS and Android (`../jellycast-ios/NOTES.md` → Decisions). Research and rules: `../RECLAME-EN-METING.md`; the service: `../jellycast-api`.
+- `core/service/`: `jellyCastService.ts` (fetch with a 4 s timeout to the first answering address: the test server on the Windows Jellyfin machine, `192.168.1.4:8090`, then `10.8.0.1:8090` over the VPN; `localStorage.jellycast.serviceAddress` points a TV elsewhere for a test) and `usage.ts` (the choice, consent version 2, the install ID and the last placements in `localStorage`).
+- The question comes before the app, in the sign-in layout: Continue (initial focus), Continue without statistics, More information. Settings → Account has "Usage statistics: on/off". Allowed: a ping at launch and on `visibilitychange`, at most hourly, with the install ID, `webos`, brand LG, `modelName` and `platformVersion` from `webOSSystem.deviceInfo` (on the C2: `OLED42C26LB`, `23.25.55`) and the app version.
+- A `home` campaign is a suggestion marked AD in the Home stack (never first; its button "Why am I seeing this?" shows the reason, since a TV opens no links; the backdrop is the campaign image).
+- The string import now also reads `strings_usage.xml` and the genre names from Android's `core` module (the `app` module became `tv`).
+- Checked on the C2 2026-10-29: the question, More information, a ping to the test server after Continue; against a test server on the Mac the ad as suggestion 2 of 6 with its reason, and the Settings button. The CS has the same build installed, not checked there.
+
 ### Tracks follow a hand-over between iPhone and TV (2026-10-25)
 
 - A play from the iPhone (server `Play` message or the `jellycast://play` link) carries the audio and subtitle stream index the iPhone played; the TV starts with those instead of its own choice.

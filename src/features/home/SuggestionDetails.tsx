@@ -2,6 +2,8 @@ import { ArtworkImage } from '../../core/design/components/Artwork'
 import { t } from '../../core/i18n/i18n'
 import type { SuggestionReason } from '../../core/data/homeRanking'
 import { dynamicRangeLabel, episodeCode, episodeTime, movieMetaParts, resolutionLabel, seasonCountText, separator } from '../../core/ui/format'
+import { getSettings } from '../../core/data/settings'
+import type { AdEntry } from './homeAd'
 import type { Suggestion } from './HomeSection'
 
 const reasonKeys: Record<SuggestionReason, string> = {
@@ -44,6 +46,45 @@ export function SuggestionDetails({ suggestion }: { suggestion: Suggestion }) {
             <div class="suggestion-overview body-medium muted clamp-3">{overview}</div>
         </div>
     )
+}
+
+/** The same block for an ad: label, title, advertiser, and its site or why it is shown. */
+export function AdDetails({ entry, showsReason }: { entry: AdEntry; showsReason: boolean }) {
+    const { campaign } = entry
+    const site = campaign.url ? siteOf(campaign.url) : ''
+    return (
+        <div class="suggestion-details">
+            <div class="reason label-medium">
+                <span class="reason-dot" />
+                <span>{t('ad_label')}</span>
+            </div>
+            <div class="suggestion-logo">
+                <div class="display-small clamp-2">{campaign.title ?? campaign.advertiser}</div>
+            </div>
+            <div class="meta-row">
+                <span class="body-medium muted ellipsis">{t('ad_meta', campaign.advertiser)}</span>
+            </div>
+            <div class="suggestion-overview body-medium muted clamp-3">{showsReason ? adReason(entry.country) : site}</div>
+        </div>
+    )
+}
+
+function siteOf(url: string): string {
+    try {
+        return new URL(url).host.replace(/^www\./, '')
+    } catch {
+        return ''
+    }
+}
+
+function adReason(country: string | null): string {
+    let name: string | undefined
+    try {
+        name = country ? new Intl.DisplayNames([getSettings().language], { type: 'region' }).of(country) : undefined
+    } catch {
+        name = undefined
+    }
+    return name ? t('ad_why', name) : t('ad_why_no_country')
 }
 
 function EpisodeParts({ parts }: { parts: (string | null)[] }) {

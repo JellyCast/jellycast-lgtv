@@ -232,6 +232,45 @@
   "playback_start_delay": "Start delay: %1$s s",
   "playback_start_delay_explain": "Do you hear a click at the start, or does the sound drop out briefly (often with an amplifier in between)? Then add a delay: the sound starts later, when the TV and amplifier are ready.",
   "settings_device_none": "none",
+  "player_skip_intro": "Skip intro",
+  "player_skip_recap": "Skip recap",
+  "player_skip_commercial": "Skip ad",
+  "player_skip_preview": "Skip preview",
+  "player_skip_outro": "Skip credits",
+  "library_count_movies": {
+    "one": "%d movie",
+    "other": "%d movies"
+  },
+  "library_count_series": {
+    "one": "%d series",
+    "other": "%d series"
+  },
+  "season_count": {
+    "one": "%1$d season",
+    "other": "%1$d seasons"
+  },
+  "series_episode_count": {
+    "one": "%1$d episode",
+    "other": "%1$d episodes"
+  },
+  "usage_title": "Statistics",
+  "usage_intro": "We count how many devices use JellyCast, per country, to keep it free. Without your name or what you watch.",
+  "usage_more": "More information",
+  "usage_continue": "Continue",
+  "usage_continue_without": "Continue without statistics",
+  "usage_detail_ping": "When you open the app, it sends a random number made for this app, your country and the hour. Not your name, your server or what you watch.",
+  "usage_detail_device": "For support it also sends the kind of device, its system version and the app version, such as “%1$s”. Not the name of your device.",
+  "usage_detail_country": "The country comes from your internet address, which is never stored.",
+  "usage_detail_retention": "The details are deleted after 13 months.",
+  "usage_detail_settings": "You can change this any time in Settings.",
+  "settings_usage_footer": "Counts this device per country, so JellyCast can find advertisers and stay free.",
+  "ad_label": "Ad",
+  "ad_meta": "Ad · %1$s",
+  "ad_why_title": "Why am I seeing this?",
+  "ad_why": "JellyCast chooses ads by country only, never by what you watch. You see this one because you're in %1$s.",
+  "ad_why_no_country": "JellyCast chooses ads by country only, never by what you watch.",
+  "settings_usage_on": "Usage statistics: on",
+  "settings_usage_off": "Usage statistics: off",
   "genre_action": "Action",
   "genre_action_adventure": "Action & Adventure",
   "genre_adventure": "Adventure",
@@ -258,26 +297,5 @@
   "genre_tv_movie": "TV movie",
   "genre_war": "War",
   "genre_war_politics": "War & Politics",
-  "genre_western": "Western",
-  "player_skip_intro": "Skip intro",
-  "player_skip_recap": "Skip recap",
-  "player_skip_commercial": "Skip ad",
-  "player_skip_preview": "Skip preview",
-  "player_skip_outro": "Skip credits",
-  "library_count_movies": {
-    "one": "%d movie",
-    "other": "%d movies"
-  },
-  "library_count_series": {
-    "one": "%d series",
-    "other": "%d series"
-  },
-  "season_count": {
-    "one": "%1$d season",
-    "other": "%1$d seasons"
-  },
-  "series_episode_count": {
-    "one": "%1$d episode",
-    "other": "%1$d episodes"
-  }
+  "genre_western": "Western"
 }

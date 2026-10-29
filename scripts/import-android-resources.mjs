@@ -6,7 +6,9 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const res = join(root, '../jellycast-android-tv/app/src/main/res')
+const res = join(root, '../jellycast-android-tv/tv/src/main/res')
+// Genre names moved to the shared module, which both Android apps use.
+const coreRes = join(root, '../jellycast-android-tv/core/src/main/res')
 const languages = { en: 'values', nl: 'values-nl', fr: 'values-fr', es: 'values-es' }
 
 function decode(text) {
@@ -44,7 +46,12 @@ const i18nDir = join(root, 'src/core/i18n/strings')
 mkdirSync(i18nDir, { recursive: true })
 const untranslated = parseStrings(readFileSync(join(res, 'values/donottranslate.xml'), 'utf8'))
 for (const [language, folder] of Object.entries(languages)) {
-    const strings = parseStrings(readFileSync(join(res, folder, 'strings.xml'), 'utf8'))
+    // The usage question and ad texts live in their own file, shared with the mobile app's wording.
+    const strings = {
+        ...parseStrings(readFileSync(join(res, folder, 'strings.xml'), 'utf8')),
+        ...parseStrings(readFileSync(join(res, folder, 'strings_usage.xml'), 'utf8')),
+        ...parseStrings(readFileSync(join(coreRes, folder, 'strings.xml'), 'utf8')),
+    }
     const merged = language === 'en' ? { ...untranslated, ...strings } : strings
     writeFileSync(join(i18nDir, `${language}.json`), `${JSON.stringify(merged, null, 2)}\n`)
     console.log(`${language}: ${Object.keys(merged).length} strings`)
