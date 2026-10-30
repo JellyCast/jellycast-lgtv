@@ -11,8 +11,10 @@ const versionKey = 'jellycast.usage.consentVersion'
 const decidedAtKey = 'jellycast.usage.decidedAt'
 const installIdKey = 'jellycast.usage.installId'
 const placementsKey = 'jellycast.ads.placements'
+const placementsReceivedAtKey = 'jellycast.ads.placementsReceivedAt'
 const pingIntervalMs = 60 * 60 * 1000
 const refreshIntervalMs = 15 * 60 * 1000
+const placementsMaxAgeMs = 24 * 60 * 60 * 1000
 
 function read(key: string): string | null {
     try {
@@ -99,16 +101,24 @@ async function refreshPlacements(now: number): Promise<void> {
     refreshedAt = now
     try {
         const text = await fetchPlacements()
-        if (parsePlacements(text)) write(placementsKey, text)
+        if (parsePlacements(text)) {
+            write(placementsKey, text)
+            write(placementsReceivedAtKey, String(now))
+        }
     } catch {
         refreshedAt = null
     }
 }
 
-/** The last placements, kept between launches; a campaign that has ended is left out. */
+/**
+ * The last placements, kept between launches. A campaign that has ended is left out, and so is
+ * every campaign after a day without an answer, so a campaign can still be stopped.
+ */
 export function cachedPlacements(now = Date.now()): AdPlacements | null {
     const text = read(placementsKey)
     const placements = text ? parsePlacements(text) : null
     if (!placements) return null
+    const receivedAt = Number(read(placementsReceivedAtKey) ?? 0)
+    if (now - receivedAt >= placementsMaxAgeMs) return { ...placements, home: null }
     return { ...placements, home: placements.home && placements.home.untilMs > now ? placements.home : null }
 }
